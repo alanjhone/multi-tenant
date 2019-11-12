@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template_admin.xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<ui:define name="content">			
+			
+		<div class="row">
+			<div class="col-md-12">
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+			</div>
+		</div>
+			
+		<div class="">
+			<h1>Solicitações de Acesso</h1>	
+			<hr/>
+		</div>
+		
+		<h:form prependId="false">
+		
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+					    <h:outputLabel for="empresaPojo" value="Empresa: " /><br/>
+			        	<p:autoComplete placeholder="Digite o nome da empresa..." id="empresaPojo" value="#{usuarioMBean.empresaSelecionada}" completeMethod="#{usuarioMBean.completeEmpresas}"
+							var="empresa" itemLabel="#{empresa.nome}" itemValue="#{empresa}"  converter="conversor"  forceSelection="true" />
+					</div>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col-md-12">
+					<h:dataTable id="tblUsuarios" var="usuario" value="#{usuarioMBean.usuarios}" class="table table-striped">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							 <h:outputText value="#{usuario.pessoa.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="CPF" />
+							</f:facet>
+							 <h:outputText value="#{usuario.pessoa.cpf}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Login" />
+							</f:facet>
+							 <h:outputText value="#{usuario.login}" />
+						</h:column>
+						
+						 
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Opções" />
+							</f:facet>
+					        <p:selectBooleanCheckbox value="#{usuarioMBean.usuarioSelecionado}">
+					            <p:ajax update="tblUsuarios" listener="#{usuarioMBean.selecionarUsuario(usuario)}" />
+					        </p:selectBooleanCheckbox>
+						</h:column>
+						 
+	
+					    
+					</h:dataTable>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<h:commandButton class="btn btn-primary" action="#{usuarioMBean.aprovarSolicitacaoAcesso}" value="Aprovar Solicitação" style="margin-right: 3px;"/>
+					<h:commandButton class="btn btn-danger" disabled="true" action="#{usuarioMBean.rejeitarSolicitacaoAcesso}" value="Rejeitar Solicitação" style="margin-right: 3px;"/>
+					<h:commandButton class="btn btn-outline-primary" action="#{usuarioMBean.voltar}" value="Voltar"/>
+				</div>
+			</div>
+				
+		</h:form>
+               
+	</ui:define>  
+</ui:composition>
+      

@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template_padrao.xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<ui:define name="content">			
+		<div class="row">
+			<div class="col-md-12">
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+			</div>
+		</div>
+			
+		<div class="row header">
+			<div class="col-xs-12 col-md-12">
+				<h2>Selecione um Vínculo</h2>
+				<hr/>
+			</div>
+		</div>
+		
+		<h:form id="tipoForm">
+		
+			<div class="row">
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+			</div>
+		
+			<div class="row vinculo-list">
+				<ui:repeat var="vinculo" value="#{ controleAcessoVinculoMBean.listaVinculosAtivoUsuario() }" varStatus="status">
+					
+						<h:commandLink class="vinculo-item" action="#{controleAcessoVinculoMBean.selecionarVinculo(vinculo)}" value="">
+							<span class="papel">#{vinculo.nome}</span>
+						</h:commandLink>
+				</ui:repeat>
+			</div>
+			
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

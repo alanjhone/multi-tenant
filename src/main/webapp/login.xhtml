@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+	
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	
+	<h:outputScript library="primefaces" name="js/jquery.min.js"
+		target="head" />
+	<h:outputScript target="head">
+	    $ = jQuery;
+	</h:outputScript>
+	
+</h:head>
+
+<body>
+	<hr/>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p:messages id="messages" autoUpdate="true" closable="true" >
+				<c:if test="${param.error != null}">
+					<div class="ui-messages-error ui-corner-all">
+						<a class="ui-messages-close" href="#" onclick="$(this).parent().slideUp();return false;"></a>
+						<span class="ui-messages-error-icon"></span>
+						<ul><li><span class="ui-messages-error-summary">${ SPRING_SECURITY_LAST_EXCEPTION.message }</span></li></ul>
+					</div>
+				</c:if>
+			</p:messages>
+		</div>
+	</div>
+		
+	
+	<div class="loginform">
+	    <form name="loginForm" action="/sysos/j_spring_security_check" method="post">
+	    
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><span class="fa fa-user"></span></div>
+					<input type="text" name="j_username" class="form-control" placeholder="Digite o usuário" required="" autofocus="" value="${ SPRING_SECURITY_LAST_USERNAME }" />
+				</div>
+			</div>
+	    
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><span class="fa fa-lock"></span></div>
+					<input type="password" name="j_password" class="form-control" placeholder="Digite a senha" required="" value="" />
+				</div>
+			</div>
+	         
+	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+	        
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary btn-lg btn-block btn-login" style="padding:0;" value="Entrar" />
+			</div>
+	    </form>
+
+	    <h:form name="solicitacaoAcessoForm">
+	    
+			<div class="clo-md-12" style="text-align: center;">
+				<h:commandLink action="#{usuarioMBean.entrarSolicitacaoAcesso}" value="Solicitar Acesso" />
+			</div>
+			
+	    </h:form>
+    </div>
+    
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

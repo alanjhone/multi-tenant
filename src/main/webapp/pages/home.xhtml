@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template_admin.xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<ui:define name="content">			
+			
+		<div class="row">
+			<div class="col-md-12">
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+			</div>
+		</div>
+		
+        <h:panelGroup rendered="#{usuarioMBean.verificarAcessoAdministradorGeral() == true}">
+	        <h:form id="form_vinculo_admin">
+	        		<div class="row">
+			        <ui:repeat var="vinculo" value="#{ controleAcessoVinculoMBean.listaVinculosAtivoUsuario() }" varStatus="status">
+				    	<h:panelGroup rendered="#{vinculo.nome != 'public'}">
+				          <div class="col-xl-3 col-sm-6 mb-3">
+				            <div class="card text-white o-hidden h-100" style="background-color: #212529;">
+				              <div class="card-body">
+				                <div class="card-body-icon">
+				                  <i class="fas fa-fw fa-building"></i>
+				                </div>
+				                <div class="mr-5"> <strong> #{vinculo.nome} </strong> </div>
+				              </div>
+				              <h:commandLink class="card-footer text-white clearfix small z-1" action="#{controleAcessoVinculoMBean.selecionarVinculo(vinculo)}" value="">
+				              
+				                <span class="float-left"><strong>Selecionar</strong></span>
+				                <span class="float-right">
+				                  <i class="fas fa-angle-right"></i>
+				                </span>
+				              </h:commandLink>
+				            </div>
+				          </div>
+				        </h:panelGroup>
+			        </ui:repeat>
+					</div>
+	        	</h:form>
+         </h:panelGroup>
+         
+	</ui:define>  
+</ui:composition>
+      

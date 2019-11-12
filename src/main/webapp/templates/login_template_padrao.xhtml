@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+	
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/style.css"/>
+	
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
+	<h:outputScript target="head">
+	    $ = jQuery;
+	</h:outputScript>
+	
+</h:head>
+
+<body>
+	<div class="row">
+		<div class="template-header">
+			<div class="col-md-12">
+				
+			</div>
+			</div>
+		</div>
+	
+	<div class="content">
+		<ui:insert name="content" >
+	    	
+	    </ui:insert>
+    </div>
+	
+	
+	<script src="#{facesContext.externalContext.requestContextPath}/js/jquery.dataTables.js" />
+    <script src="#{facesContext.externalContext.requestContextPath}/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

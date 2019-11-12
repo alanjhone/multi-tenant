@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template_admin.xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<ui:define name="content">			
+			
+		<div class="row">
+			<div class="col-md-12">
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+			</div>
+		</div>
+			
+		<div class="">
+			<h1>Listagem de Empresas</h1>	
+			<hr/>
+		</div>
+		
+		<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h:dataTable  var="empresa" value="#{empresaMBean.empresas}" class="table table-striped">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							 <h:outputText value="#{empresa.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="CNPJ" />
+							</f:facet>
+							 <h:outputText value="#{empresa.cnpj}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>	
+			
+			<div class="row">
+				<div class="col-md-12">
+					<h:commandButton class="btn btn-outline-primary" action="#{empresaMBean.voltar}" value="Voltar"/>
+				</div>
+			</div>
+		</h:form>
+               
+	</ui:define>  
+</ui:composition>
+      
