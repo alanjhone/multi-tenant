@@ -31,3 +31,12 @@ Para o Hibernate rotear adequadamente as solicitações de conexão com o esquem
 ```console
 <prop key="hibernate.multi_tenant_connection_provider">br.com.dev.sysos.helpers.MultiTenantConnectionProviderImpl</prop>
 ```
+
+#### Implementação da CurrentTenantIdentifierResolver
+
+A implementação da interface CurrentTenantIdentifierResolver será usada para localizar e identificar o inquilino associado ao Thread em execução atual. Então, precisamos definir a propriedade de configuração através da propriedade:
+
+```console
+<prop key="hibernate.tenant_identifier_resolver">br.com.dev.sysos.helpers.CurrentTenantIdentifierResolverImpl</prop>
+```
+
